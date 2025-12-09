@@ -1,0 +1,19 @@
+{
+  "name": "kequtech-docs",
+  "version": "1.0.0",
+  "description": "Static documentation for your favorite libraries",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
+  },
+  "keywords": [
+    "documentation"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vitepress": "^1.0.0"
+  }
+}
