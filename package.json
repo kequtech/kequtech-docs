@@ -6,7 +6,7 @@
     "license": "UNLICENSED",
     "author": "Nathan Lunde-Berry",
     "engines": {
-        "node": ">=20.0.0"
+        "node": ">=23.6.0"
     },
     "imports": {
         "#constants.ts": "./src/constants.ts",
