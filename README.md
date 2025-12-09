@@ -123,6 +123,13 @@ Edit `docs/.vitepress/config.js` to customize:
 - Theme settings
 - Social links
 
+**Base Path Configuration:**
+- For GitHub Pages project sites (default): The base path is automatically set to `/kequtech-docs/`
+- For custom domains: Set the `BASE_PATH` environment variable to `/` before building:
+  ```bash
+  BASE_PATH=/ npm run build
+  ```
+
 ## Contributing
 
 1. Fork the repository
