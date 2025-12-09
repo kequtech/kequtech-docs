@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@source not "../dist";
+@source not "../assets";
+
+@plugin "@tailwindcss/typography";
+
+@import "./tw-utilities.css";
+@import "./tw-base.css";
+@import "./components/layout.css";
+@import "./components/scrollbars.css";
+@import "./components/search.css";

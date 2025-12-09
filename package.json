@@ -1,19 +1,46 @@
 {
-  "name": "kequtech-docs",
-  "version": "1.0.0",
-  "description": "Static documentation for your favorite libraries",
-  "type": "module",
-  "scripts": {
-    "dev": "vitepress dev docs",
-    "build": "vitepress build docs",
-    "preview": "vitepress preview docs"
-  },
-  "keywords": [
-    "documentation"
-  ],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "vitepress": "^1.0.0"
-  }
+    "name": "kequtech-docs",
+    "version": "0.1.0",
+    "description": "Static documentation for your favorite libraries.",
+    "type": "module",
+    "license": "UNLICENSED",
+    "author": "Nathan Lunde-Berry",
+    "engines": {
+        "node": ">=20.0.0"
+    },
+    "imports": {
+        "#constants.ts": "./src/constants.ts",
+        "#types.ts": "./src/types.ts"
+    },
+    "scripts": {
+        "build:dist": "node ./src/scripts/build.ts",
+        "build:css": "npx @tailwindcss/cli -i ./src/style/input.css -o ./src/assets/style.css --minify",
+        "copy:assets": "node ./src/scripts/copy-assets.ts",
+        "build": "npm run build:dist && npm run build:css && npm run copy:assets",
+        "dev:build": "node ./src/scripts/dev-build.ts",
+        "dev:css": "npx @tailwindcss/cli -i ./src/style/input.css -o ./src/assets/style.css --watch",
+        "dev:server": "node --env-file=.env ./src/scripts/dev-server.ts",
+        "dev": "concurrently \"npm run dev:build\" \"npm run dev:css\" \"npm run dev:server\""
+    },
+    "dependencies": {
+        "@tailwindcss/cli": "^4.1.14",
+        "@tailwindcss/typography": "^0.5.19",
+        "esbuild": "^0.27.1",
+        "fs-extra": "^11.3.2",
+        "gray-matter": "^4.0.3",
+        "marked": "^16.4.2",
+        "mustache": "^4.2.0",
+        "remove-markdown": "^0.6.2",
+        "tailwindcss": "^4.1.11",
+        "typescript": "^5.9.3"
+    },
+    "devDependencies": {
+        "@types/fs-extra": "^11.0.4",
+        "@types/livereload": "^0.9.5",
+        "@types/mustache": "^4.2.6",
+        "@types/node": "^24.6.2",
+        "chokidar": "^3.6.0",
+        "concurrently": "^9.2.1",
+        "mime": "^4.1.0"
+    }
 }

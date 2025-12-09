@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        // Modern JS for Node 20+ / 22+ / 24
+        "target": "ES2022",
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+
+        // Dev only: don't emit anything
+        "noEmit": true,
+
+        // You like explicit .ts imports; fine:
+        "allowImportingTsExtensions": true,
+        // If something *does* emit (e.g. via tools), imports are fixable:
+        "rewriteRelativeImportExtensions": true,
+
+        // Keep Node/ESM semantics intact while editing
+        "verbatimModuleSyntax": true,
+        "erasableSyntaxOnly": true,
+
+        // Sanity options
+        "strict": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "noUncheckedSideEffectImports": true,
+
+        "types": ["node"]
+    }
+}

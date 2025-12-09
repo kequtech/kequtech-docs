@@ -1,0 +1,18 @@
+@layer components {
+    #search-container { @apply hidden md:block relative; }
+
+    #search-results {
+        @apply absolute left-0 right-0 rounded-lg mt-2 shadow-md bg-background overflow-hidden;
+
+        .search-result { @apply block p-4 transition-colors duration-150 overflow-hidden; }
+        .title { @apply font-medium text-primary group-hover:underline; }
+        .snippet { @apply text-sm text-dark whitespace-normal; }
+        span.highlight { @apply font-semibold bg-yellow-100; }
+
+        .search-result:hover, .search-result.is-hovered {
+            @apply bg-primary;
+            .title, .snippet { @apply text-light; }
+            span.highlight { @apply text-dark; }
+        }
+    }
+}

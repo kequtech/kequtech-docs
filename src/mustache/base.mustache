@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{{title}}}</title>
+  <meta name="description" content="{{{description}}}" />
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/favicon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon/favicon-192.png">
+  <link rel="canonical" href="https://docs.kequtech.com/" />
+  <meta property="og:title" content="{{{title}}}" />
+  <meta property="og:description" content="{{{description}}}" />
+  <meta property="og:image" content="/assets/images/logo-social.png" />
+  <meta property="og:type" content="website" />
+  <script src="/assets/main.js?{{buildTime}}" type="module"></script>
+  <script src="/assets/search.js?{{buildTime}}" type="module"></script>
+  <link rel="stylesheet" href="/assets/style.css?{{buildTime}}" />
+  {{#colors}}
+  <style>
+{{{colors}}}
+  </style>
+  {{/colors}}
+</head>
+{{{layout}}}
+</html>

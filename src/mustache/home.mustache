@@ -1,0 +1,30 @@
+<body>
+  <header class="flex justify-between">
+    <div id="home" class="text-lg tracking-tight">
+      <a href="/"><svg class="icon-lg" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="currentColor"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M4 21.4V2.6a.6.6 0 0 1 .6-.6h11.652a.6.6 0 0 1 .424.176l3.148 3.148A.6.6 0 0 1 20 5.75V21.4a.6.6 0 0 1-.6.6H4.6a.6.6 0 0 1-.6-.6ZM8 10h8m-8 8h8m-8-4h4"/><path d="M16 2v3.4a.6.6 0 0 0 .6.6H20"/></g></svg></a>
+      <span class="text-light">Menu</span>
+    </div>
+    <div class="flex gap-1 items-center whitespace-nowrap">
+      <nav>
+        <a href="{{siteDomain}}" class="text-lg tracking-tight">Return</a>
+      </nav>
+    </div>
+  </header>
+  <main class="scrollbar-sim">
+    <div id="scroll-area" class="scrollbar-vp">
+      <div class="container-spacing px-4">
+        <article class="mustache text-center my-12">
+          <h1 class="mb-12">Documentation</h1>
+          <p>Static documentation for your favorite libraries.</p>
+          <div class="space-y-2">
+            {{#projects}}
+            <div class="rounded-lg" style="{{background}}">
+              <a href="/{{key}}/" class="block p-6 text-xl" style="{{primary}}">{{name}}</a>
+            </div>
+            {{/projects}}
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+</body>

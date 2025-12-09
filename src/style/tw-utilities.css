@@ -1,0 +1,10 @@
+@theme {
+    --color-dark: #07020D;
+    --color-light: var(--color-zinc-100);
+    --color-primary: #5DB7DE;
+    --color-background: zinc-100;
+    --header-height: 72px;
+}
+
+@layer utilities {
+}

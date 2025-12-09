@@ -1,0 +1,45 @@
+<body>
+  <header class="flex justify-between">
+    <div id="home" class="text-lg tracking-tight">
+      <a href="/"><svg class="icon-lg" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="currentColor"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M4 21.4V2.6a.6.6 0 0 1 .6-.6h11.652a.6.6 0 0 1 .424.176l3.148 3.148A.6.6 0 0 1 20 5.75V21.4a.6.6 0 0 1-.6.6H4.6a.6.6 0 0 1-.6-.6ZM8 10h8m-8 8h8m-8-4h4"/><path d="M16 2v3.4a.6.6 0 0 0 .6.6H20"/></g></svg></a>
+      <a href="/{{key}}/">{{{project.name}}}</a>
+    </div>
+    <div class="flex gap-1 items-center whitespace-nowrap">
+      <div id="search-container">
+        <svg class="icon-sm" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 376 384"><path fill="currentColor" d="m267 235l106 106l-32 32l-106-106v-17l-6-6q-39 33-90 33q-58 0-98.5-40.5T0 138.5t40.5-98t98-40.5t98 40.5T277 139q0 51-33 90l6 6h17zm-128 0q40 0 68-28t28-68t-28-68t-68-28t-68 28t-28 68t28 68t68 28z"/></svg>
+        <input data-key="{{key}}" type="text" name="search" placeholder="search {{key}}…" />
+        <div id="search-results"></div>
+      </div>
+      <nav>
+        {{#project.github}}
+        <a href="{{{project.github}}}" target="_blank" rel="noopener">
+          <svg class="icon-lg" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+        {{/project.github}}
+        {{#project.npm}}
+        <a href="{{{project.npm}}}" target="_blank" rel="noopener">
+          <svg class="icon-lg" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><path fill="currentColor" d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019l-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z"/></svg>
+        </a>
+        {{/project.npm}}
+      </nav>
+    </div>
+  </header>
+  <main class="scrollbar-sim">
+    <div id="scroll-area" class="scrollbar-vp">
+      <div id="docs" class="container-spacing">
+        <aside>
+{{{sidebar}}}
+        </aside>
+        <article class="mustache">
+{{{content}}}
+          <div id="bottom-links" class="flex justify-between mt-24">
+            <span data-role="top" data-previous="{{previous}}" class="link text-sm">Scroll to top</span>
+            {{#next}}
+            <a href="{{next}}" data-role="next" class="text-sm no-underline"><span class="underline">Next</span> ➭</a>
+            {{/next}}
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+</body>
