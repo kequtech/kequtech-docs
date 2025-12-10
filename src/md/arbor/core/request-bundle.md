@@ -63,7 +63,7 @@ Best practice is:
 * assert when reading
 
 ```ts
-interface UserContext {
+interface ContextUser {
     user?: User;
 }
 
@@ -71,7 +71,7 @@ const actionAuth = createAction(({ context }) => {
   context.user = { id: "123" };
 });
 
-const actionProfile = createAction<UserContext>(({ context }) => {
+const actionProfile = createAction<ContextUser>(({ context }) => {
   if (!context.user) throw Ex.InternalServerError("Missing user");
   return context.user;
 });

@@ -189,7 +189,11 @@ export default createAction(() => {
 import { createAction } from "@kequtech/arbor";
 
 export default createAction(async ({ getBody }) => {
-  const body = await getBody({ trim: true, required: ["name"] });
+  const body = await getBody({
+    trim: true,
+    required: ["name"],
+  });
+
   return { created: body.name };
 });
 ```
@@ -212,9 +216,9 @@ Your action might use a renderer that knows how to load `page.mustache` from thi
 ```ts
 // src/app/dashboard/action.ts
 import { createAction } from "@kequtech/arbor";
-import type { HtmlPayload } from "#lib/html-renderer.ts";
+import type { PayloadHtml } from "#lib/html-renderer.ts";
 
-export default createAction(({ context }): HtmlPayload => {
+export default createAction(({ context }): PayloadHtml => {
   context.view = "dashboard/page.mustache";
   return { title: "Dashboard" };
 });
@@ -226,14 +230,14 @@ A renderer can then use `context.view` and the payload to render HTML.
 // src/lib/html-renderer.ts
 import { createRenderer } from "@kequtech/arbor";
 
-export interface HtmlPayload {
+export interface PayloadHtml {
   title: string;
 }
 
 export const rendererHtml = createRenderer({
   contentType: 'text/html',
   action: async (payload, { context }) => {
-    const { title } = payload as HtmlPayload;
+    const { title } = payload as PayloadHtml;
     const view = context.view as string | undefined;
     // etc.
   },
@@ -268,7 +272,7 @@ properties can use a context hint:
 ```ts
 // src/lib/auth.ts
 export interface ContextAuth {
-  user: { id: string };
+  user?: { id: string };
 }
 
 export const actionAuth = createAction(({ context, cookies }) => {

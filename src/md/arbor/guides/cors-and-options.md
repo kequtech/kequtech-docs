@@ -86,7 +86,7 @@ createApp({
 
 This pattern:
 
-* ensures all responses at CORS-enabled URLs include `Access-Control-Allow-Origin`
+* ensures all responses at CORS-enabled URLs use a strict `Access-Control-Allow-Origin`
 * lets you change the origin logic in one place
 * still relies on `OPTIONS` routes for preflight handling
 

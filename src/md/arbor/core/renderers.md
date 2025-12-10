@@ -34,7 +34,7 @@ const rendererHtml = createRenderer({
 A renderer receives:
 
 ```ts
-(payload: unknown, bundle: RequestBundle) => void
+(payload: unknown, bundle: Bundle) => void
 ```
 
 Returned values are ignored, renderers must finalize the response.

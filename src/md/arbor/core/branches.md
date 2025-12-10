@@ -164,7 +164,7 @@ The logger is not part of the request bundle and is not used inside actions. It 
 
 ## autoHead
 
-Branches support `autoHead`, which controls whether missing HEAD requests fall back to matching GET routes inside that branch.
+Branches support `autoHead`, which controls whether missing HEAD definitions fall back to matching GET routes inside that branch.
 
 ```ts
 const branchFiles = createBranch({

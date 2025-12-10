@@ -13,8 +13,8 @@ These documents assume you already understand branches, routes, actions, body pa
 Current guides include:
 
 - Authentication
-- Validation
 - Writing Modular APIs
+- Validation
 - Cors and Options
 - Testing
 - Types

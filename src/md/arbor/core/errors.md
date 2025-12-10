@@ -36,7 +36,7 @@ interface ServerEx extends Error {
 Typical constructors:
 
 ```ts
-throw Ex.NotFound("no such item");
+throw Ex.NotFound("No such item");
 throw Ex.BadRequest("Invalid input", { cause: "format" });
 throw Ex.StatusCode(451, "Restricted");
 ```

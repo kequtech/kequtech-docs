@@ -49,7 +49,7 @@ In this example the age validator does not run if the age field is missing, sinc
 
 ## Non-throwing validation
 
-For endpoints that need to return structured error responses, use `throws: false`.
+For endpoints that need to know what validation failed, use `throws: false`.
 
 ```ts
 const actionCreateUserSafe = createAction(async ({ getBody }) => {
@@ -74,7 +74,7 @@ const actionCreateUserSafe = createAction(async ({ getBody }) => {
 });
 ```
 
-This pattern is suitable for form endpoints where the client expects field-level error feedback.
+Keep in mind this information is available on the response sent by the default error handler as `res.error.cause`, so use the non-throwing variant only when it is truly necessary. Displaying client side field validation errors can be handled by the default `throws: true` variant.
 
 ## Shared validators
 

@@ -65,7 +65,7 @@ const routeMe = createRoute({
 
 Key points:
 
-* `context` is considered unsafe; each action should assert what it expects
+* `context` is considered unknown; actions should always assert what it expects to contain
 * authentication is just an action that can be reused across many routes
 * unauthorized access throws `Ex.Unauthorized`, which invokes an error handler
 
