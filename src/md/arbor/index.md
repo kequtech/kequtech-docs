@@ -35,7 +35,7 @@ npm i @kequtech/arbor
 A minimal application:
 
 ```ts
-// server.js
+// server.ts
 import { createServer } from "node:http";
 import app from "./app.ts";
 
