@@ -100,7 +100,7 @@ src/app/
 - - page.client.ts
 ```
 
-### Simple route example
+### Simple action example
 
 ```ts
 // src/app/dashboard/action.ts
@@ -194,7 +194,7 @@ export default createAction(async ({ getBody }) => {
 });
 ```
 
-This pattern keeps each route small and easy to locate.
+This pattern keeps each action small and easy to locate.
 
 ## Co-locating views and client code
 
@@ -231,12 +231,12 @@ export interface HtmlPayload {
 }
 
 export const rendererHtml = createRenderer({
-    contentType: 'text/html',
-    action: async (payload, { context }) => {
-        const { title } = payload as HtmlPayload;
-        const view = context.view as string | undefined;
-        // etc.
-    },
+  contentType: 'text/html',
+  action: async (payload, { context }) => {
+    const { title } = payload as HtmlPayload;
+    const view = context.view as string | undefined;
+    // etc.
+  },
 });
 ```
 
@@ -267,7 +267,7 @@ properties can use a context hint:
 
 ```ts
 // src/lib/auth.ts
-export interface AuthContext {
+export interface ContextAuth {
   user: { id: string };
 }
 
@@ -282,15 +282,15 @@ export const actionAuth = createAction(({ context, cookies }) => {
 
 ```ts
 // src/app/dashboard/action.ts
-import type { AuthContext } from "#lib/auth.ts";
+import type { ContextAuth } from "#lib/auth.ts";
 
-export default createAction<AuthContext>(({ context }) => {
+export default createAction<ContextAuth>(({ context }) => {
   context.user; // { id: string }
 });
 ```
 
 Context hints make cross-module assumptions visible without requiring a global context type.
-For more guidance on typing patterns, see **Types & Contracts**.
+For more guidance on typing patterns, see **Types**.
 
 ## Testing structure
 
@@ -318,4 +318,4 @@ A practical Arbor layout:
 * optional `page.mustache`, `page.client.ts`, and `action.test.ts` co-located with routes
 * shared logic in `/src/lib` or `/src/shared`
 
-This structure is not required by Arbor, but it scales well and makes it easy to locate behavior by looking at the URL.
+This structure is not required by Arbor, but it scales well and makes it easy to locate behavior from looking at the URL.

@@ -1,4 +1,4 @@
-import { createElement, getElement, getElementAll, type ParentElement } from '../utils/elements.ts';
+import { createElement, getElement, getElementAll, type ParentElement } from './elements.ts';
 
 interface UpdateScrollbarsDetail {
     el: Element;

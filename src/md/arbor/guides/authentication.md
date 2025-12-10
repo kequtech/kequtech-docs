@@ -24,7 +24,7 @@ import { createAction, createRoute, createBranch, Ex } from "@kequtech/arbor";
 const actionAuthRequired = createAction(async ({ req, context }) => {
   const header = req.headers.authorization;
   if (!header?.startsWith("Bearer ")) {
-    throw Ex.Unauthorized("missing token");
+    throw Ex.Unauthorized("Missing token");
   }
 
   const token = header.slice("Bearer ".length).trim();
@@ -32,18 +32,25 @@ const actionAuthRequired = createAction(async ({ req, context }) => {
   // Look up the user. Real code would hit a database or cache.
   const user = await findUserByToken(token);
   if (!user) {
-    throw Ex.Unauthorized("invalid token");
+    throw Ex.Unauthorized("Invalid token");
   }
 
   context.user = user;
 });
+```
 
-const actionCurrentUser = createAction(({ context }) => {
-  const user = context.user as User | undefined;
-  if (!user) throw Ex.InternalServerError("User not in context");
+Then read that user in downstream actions:
+
+```ts
+interface ContextUser {
+  user?: User;
+}
+
+const actionCurrentUser = createAction<ContextUser>(({ context }) => {
+  if (!context.user) throw Ex.InternalServerError("Missing user");
 
   // Sends the authenticated user directly to the renderer.
-  return user;
+  return context.user;
 });
 
 const routeMe = createRoute({
@@ -58,7 +65,7 @@ const routeMe = createRoute({
 
 Key points:
 
-* `context` is untyped; each action should assert what it expects
+* `context` is considered unsafe; each action should assert what it expects
 * authentication is just an action that can be reused across many routes
 * unauthorized access throws `Ex.Unauthorized`, which invokes an error handler
 
@@ -118,12 +125,11 @@ const actionTryAuth = createAction(async ({ req, context }) => {
   context.user = user;
 });
 
-const actionMaybePersonalized = createAction(({ context }) => {
-  const user = context.user as User | undefined;
-  if (!user) {
+const actionMaybePersonalized = createAction<ContextUser>(({ context }) => {
+  if (!context.user) {
     return { message: "hello, guest" };
   }
-  return { message: `hello, ${user.email}` };
+  return { message: `hello, ${context.user.email}` };
 });
 
 const routeGreeting = createRoute({
@@ -143,9 +149,8 @@ This pattern is useful for home pages, dashboards and other mixed-access endpoin
 Once authentication is in place, authorization is just another action that inspects `context.user`.
 
 ```ts
-const actionRequireAdmin = createAction(({ context }) => {
-  const user = context.user as User | undefined;
-  if (user?.role !== "admin") {
+const actionRequireAdmin = createAction<ContextUser>(({ context }) => {
+  if (context.user?.role !== "admin") {
     throw Ex.Forbidden("Insufficient permissions");
   }
 });

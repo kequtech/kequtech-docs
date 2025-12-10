@@ -14,9 +14,7 @@ Arbor does not ship with a full schema system, but `getBody` and actions make it
 
 ## Body validation with getBody
 
-`getBody` supports a `validate` object. Each key maps to a validator for that field. Validators run after normalization.
-
-Validators should return a short lowercase string for failures or nothing for success.
+`getBody` supports a `validate` object. Each key maps to a validator for that field. Validators run after normalization. Validators should return a short lowercase string for failures or nothing for success.
 
 ```ts
 interface Body {
@@ -138,7 +136,7 @@ const actionListUsers = createAction(({ url }) => {
 });
 ```
 
-The pattern is the same: normalize, validate, throw `Ex.BadRequest` or use any error as needed.
+The pattern is the same: normalize, validate, throw 422 (`Ex.UnprocessableContent`), `Ex.BadRequest` or use any error as needed.
 
 ## Splitting validation into its own function
 

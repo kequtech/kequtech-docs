@@ -12,10 +12,11 @@ These documents assume you already understand branches, routes, actions, body pa
 
 Current guides include:
 
-- Authentication  
-- Validation  
+- Authentication
+- Validation
 - Writing Modular APIs
-- CORS and OPTIONS
-- Testing  
+- Cors and Options
+- Testing
+- Types
 
 You can read them in any order. Authentication and Validation are natural starting points for most applications.

@@ -20,6 +20,9 @@ If you understand the request bundle and the flow of actions, you understand Arb
 
 If you find a bug, want to propose an improvement or notice something unclear in the documentation, open an issue or pull request on GitHub. Arbor grows incrementally, driven by practical needs rather than abstraction for its own sake.
 
+- https://github.com/kequtech/arbor
+- https://github.com/kequtech/kequtech-docs
+
 ## Thank you
 
 Thank you for using Arbor. The framework is designed to stay simple, stable and easy to reason about as your applications grow.

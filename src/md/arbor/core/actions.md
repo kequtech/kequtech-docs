@@ -40,7 +40,7 @@ const routeStatus = createRoute({
   url: "/status",
   actions: [
     actionSetHeader,
-    () => "OK"),
+    () => "OK",
   ],
 });
 ```
@@ -131,18 +131,18 @@ These hints improve local clarity inside actions without changing Arbor’s runt
 
 ```ts
 // context hint
-export default createAction<AuthContext>(({ context }) => {
-  // context is typed here
+export default createAction<Context>(({ context }) => {
+  // context is typed
 });
 ````
 
 ```ts
 // return type hint
-export default createAction((): StatusPayload => ({ status: "ok" }));
+export default createAction((): Payload => ({ status: "ok" }));
 ```
 
 For a more complete explanation of these patterns and when to use them, see
-**Types & Contracts**.
+**Types**.
 
 ## Summary
 

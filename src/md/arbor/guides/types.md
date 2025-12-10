@@ -17,11 +17,11 @@ Actions are the primary place where type hints add real value.
 `context` is always a `Record<string, unknown>` at runtime, but you can describe what your action expects:
 
 ```ts
-interface AuthContext {
+interface ContextAuth {
   user?: { id: string };
 }
 
-export default createAction<AuthContext>(({ context }) => {
+export default createAction<ContextAuth>(({ context }) => {
   if (!context.user) throw Ex.Unauthorized();
 });
 ````
@@ -33,18 +33,18 @@ This does not enforce correctness across branches, but it:
 * breaks when you refactor context structures
 
 Recommended pattern:
-Define small context interfaces (`AuthContext`, `RequestIdContext`, etc.) in `src/lib/*` and import them into actions that depend on them.
+Define small context interfaces (`ContextAuth`, `ContextRequestId`, etc.) in `src/lib/*` and import them into actions that depend on them.
 
 ### Return type hints
 
 You can also hint at what an action returns:
 
 ```ts
-interface StatusPayload {
+interface PayloadStatus {
   status: "ok" | "error";
 }
 
-export default createAction((): StatusPayload => ({ status: "ok" }));
+export default createAction((): PayloadStatus => ({ status: "ok" }));
 ```
 
 Arbor routes the return value by content type at runtime, but the hint:
@@ -77,7 +77,7 @@ const result = await getBody<Body>({ throws: false });
 if (!result.ok) return { errors: result.errors };
 ```
 
-You do *not* need to understand every overload—just supply `<T>` for structure.
+You do *not* need to understand every overload just supply `<T>` for structure.
 
 ## What Stays Intentionally Untyped
 

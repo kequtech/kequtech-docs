@@ -63,14 +63,17 @@ Best practice is:
 * assert when reading
 
 ```ts
+interface UserContext {
+    user?: User;
+}
+
 const actionAuth = createAction(({ context }) => {
   context.user = { id: "123" };
 });
 
-const actionProfile = createAction(({ context }) => {
-  const user = context.user as User | undefined;
-  if (!user) throw Ex.InternalServerError("Missing user");
-  return user;
+const actionProfile = createAction<UserContext>(({ context }) => {
+  if (!context.user) throw Ex.InternalServerError("Missing user");
+  return context.user;
 });
 ```
 

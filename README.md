@@ -4,21 +4,13 @@ Static documentation for your favorite libraries
 
 ## Overview
 
-This repository contains a documentation website built with [VitePress](https://vitepress.dev/) and automatically deployed to GitHub Pages.
-
-## Features
-
-- 📝 **VitePress**: Fast, modern documentation framework
-- 🚀 **Automatic Deployment**: Deploys to GitHub Pages on every push to `main`
-- 🎨 **Beautiful UI**: Clean, responsive design with dark mode support
-- 🔍 **Search**: Built-in search functionality
-- ⚡ **Fast**: Optimized static site generation
+This repository contains the documentation website presented at https://docs.kequtech.com/ automatically deployed by GitHub Pages.
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ installed
+- Node.js 23.6+ installed
 - npm or yarn package manager
 
 ### Local Development
@@ -39,7 +31,7 @@ npm install
 npm run dev
 ```
 
-The site will be available at `http://localhost:5173`
+The site will be available at `http://localhost:4173`
 
 ### Building for Production
 
@@ -51,84 +43,36 @@ npm run build
 
 This generates static HTML files in the `./dist` directory.
 
-To preview the production build locally:
-
-```bash
-npm run preview
-```
-
 ## Deployment
 
 The site is automatically deployed to GitHub Pages when changes are pushed to the `main` branch.
-
-### GitHub Pages Setup
-
-To enable GitHub Pages deployment:
-
-1. Go to your repository Settings
-2. Navigate to Pages (under Code and automation)
-3. Under "Build and deployment":
-   - Source: Select "GitHub Actions"
-4. The workflow will automatically run on the next push to `main`
-
-The deployment workflow is defined in `.github/workflows/deploy.yml` and will:
-1. Check out the code
-2. Set up Node.js
-3. Install dependencies with `npm ci`
-4. Run `npm run build` to generate static files
-5. Deploy the `./dist` directory to GitHub Pages
-
-## Project Structure
-
-```
-.
-├── .github/
-│   └── workflows/
-│       └── deploy.yml          # GitHub Actions deployment workflow
-├── docs/
-│   ├── .vitepress/
-│   │   └── config.js           # VitePress configuration
-│   ├── guide/
-│   │   ├── index.md            # Guide introduction
-│   │   └── getting-started.md  # Getting started guide
-│   └── index.md                # Home page
-├── .gitignore
-├── package.json
-└── README.md
-```
 
 ## Adding Content
 
 ### Creating New Pages
 
-1. Add markdown files in the `docs/` directory
-2. Update the sidebar configuration in `docs/.vitepress/config.js`
-3. Commit and push to see your changes live
+1. Add markdown files in the `src/md/` directory
+2. Include headers at the top of each markdown file for title description and order
 
 Example:
-```bash
-# Create a new documentation page
-touch docs/my-new-page.md
+```md
+---
+title: "Conclusion"
+description: "Where to go next, and how to extend Arbor."
+order: 99
+---
 
-# Edit the file with your content
-# Update docs/.vitepress/config.js to add it to the navigation
+Markdown content goes here.
 ```
 
 ### Configuration
 
-Edit `docs/.vitepress/config.js` to customize:
-- Site title and description
-- Navigation menu
-- Sidebar structure
-- Theme settings
-- Social links
+You can specify port with the `PORT` environment variable when running the development server.
 
-**Base Path Configuration:**
-- For GitHub Pages project sites (default): The base path is automatically set to `/kequtech-docs/`
-- For custom domains: Set the `BASE_PATH` environment variable to `/` before building:
-  ```bash
-  BASE_PATH=/ npm run build
-  ```
+Example:
+```bash
+PORT=8080 npm run dev
+```
 
 ## Contributing
 
@@ -138,6 +82,8 @@ Edit `docs/.vitepress/config.js` to customize:
 4. Commit your changes (`git commit -m 'Add some feature'`)
 5. Push to the branch (`git push origin feature/my-feature`)
 6. Open a Pull Request
+
+Or, ya knows, just open an issue.
 
 ## License
 
