@@ -122,6 +122,7 @@ if (searchContainerEl) {
     }
 
     async function onKeydown(ev: KeyboardEvent) {
+        if (!isOpen) return;
         const results = getElementAll(searchResultsEl, 'a');
         const resultsCount = results.length;
 
