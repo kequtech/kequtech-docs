@@ -15,7 +15,7 @@ Arbor favors explicit behavior and predictable flow. It avoids global middleware
 Key properties:
 
 - Deterministic sequences of actions for each route
-- Modular branching that mirrors real project structure
+- Modular branching that mirrors real project structures
 - Zero dependencies and minimal overhead
 - Explicit handling of Content-Type for rendering and error behavior
 - Flexible body parsing with validation, type enforcement, multipart support and controlled failure modes
@@ -45,7 +45,7 @@ createServer(app).listen(4000, () => {
 ```
 
 ```ts
-// app.js
+// app.ts
 import { createApp } from "@kequtech/arbor";
 
 export default createApp({
