@@ -107,6 +107,7 @@ const routeUser = createRoute({
   method: "GET",
   url: "/users/:id",
   actions: [
+    actionSetJson,
     actionLoadUser,
     ({ context }) => ({ user: context.user }),
   ],
