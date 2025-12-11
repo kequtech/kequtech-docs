@@ -147,6 +147,7 @@ if (searchContainerEl) {
     selectedIndex = -1;
   }
   async function onKeydown(ev) {
+    if (!isOpen) return;
     const results = getElementAll(searchResultsEl, "a");
     const resultsCount = results.length;
     switch (ev.key) {

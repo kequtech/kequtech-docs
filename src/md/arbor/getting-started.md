@@ -93,6 +93,28 @@ export default createApp({
 
 Arbor selects an appropriate renderer based on the Content-Type set by the `res` header.
 
+## Async actions
+
+Actions may be asynchronous. Arbor waits for each one before running the next.
+
+```ts
+// example: loading data asynchronously
+const actionLoadUser = createAction(async ({ params, context }) => {
+  context.user = await db.findUser(params.id);
+});
+
+const routeUser = createRoute({
+  method: "GET",
+  url: "/users/:id",
+  actions: [
+    actionLoadUser,
+    ({ context }) => ({ user: context.user }),
+  ],
+});
+````
+
+Async actions behave exactly like synchronous ones: return a value to finish, throw to signal an error, or let the chain continue.
+
 ## Grouping Routes With Branches
 
 Branches let you organize related routes and share actions. They attach behavior to a URL prefix and apply it consistently.

@@ -141,6 +141,19 @@ Now a request to `/api/users` runs:
 1. `branchApi` actions (including `actionSetJson`), then
 2. `branchUsers` routes and actions.
 
+## Action flow
+
+When a request matches a route, Arbor runs actions in this order:
+
+```
+createApp.actions
+→ parentBranch.actions
+→ childBranch.actions
+→ route.actions
+```
+
+Actions always execute **top-down** through the branch hierarchy, in the order they appear in each `actions` array.
+
 ## Logger
 
 Branches accept an optional `logger` object. It must implement `info`, `warn` and `error`. Arbor uses this logger internally for startup messages, route warnings and unexpected failures.

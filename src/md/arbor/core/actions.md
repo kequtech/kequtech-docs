@@ -14,6 +14,10 @@ Actions are the smallest unit of behavior in Arbor. A route is a list of actions
 
 All routing, body parsing, cookies, context and helpers are provided through the **Bundle**, which is covered in detail in the Request Bundle section.
 
+Actions run sequentially. Arbor executes them in the order it discovers them:  
+
+> application-level actions → branch actions → route actions.
+
 ## Creating an Action
 
 Use `createAction` to define an action. It receives the request bundle as its only argument.
