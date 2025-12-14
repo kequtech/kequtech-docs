@@ -102,20 +102,6 @@ If no matching handler exists, Arbor’s built-in error handler runs. It does th
 
 * Sets Content-Type to `application/json`
 * Strips metadata except for `cause`
-* Includes `info` only in non-production environments
-* Includes `stack` only in non-production environments
-
-Shape:
-
-```ts
-interface ErrorResponse {
-  statusCode: number;
-  message: string;
-  cause?: unknown;
-  stack?: string[];
-  info?: Record<string, unknown>;
-}
-```
 
 Runtime behavior:
 
@@ -123,18 +109,12 @@ Runtime behavior:
 export const errorHandler = createErrorHandler({
   contentType: "*",
   action(ex, { res }) {
-    const error: ErrorResponse = {
+    res.setHeader("Content-Type", "application/json");
+    const error = {
       statusCode: ex.statusCode,
       message: ex.message,
       cause: ex.cause,
     };
-
-    if (process.env.NODE_ENV !== "production") {
-      error.stack = ex.stack?.split(/\r?\n/);
-      error.info = ex.info;
-    }
-
-    res.setHeader("Content-Type", "application/json");
     return { error };
   },
 });
@@ -155,8 +135,11 @@ Arbor produces:
 
 The default handler sends:
 
+* `statusCode` always
+* `message` always
 * `cause` always
-* `info` only in non-production environments
+* `info` never
+* `stack` never
 
 This keeps error responses safe while remaining useful during development.
 

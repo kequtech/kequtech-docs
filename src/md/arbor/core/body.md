@@ -226,7 +226,7 @@ Result might look like the following when there are errors:
 }
 ```
 
-Useful for user-facing endpoints that need structured client errors. It is worth noting that `errors` is included as `ex.cause` on 422 responses, and that information is sent by the default error handler. The client can study `res.error.cause` as it contains the same information.
+It is worth noting that `errors` is included as `ex.cause` on 422 responses, and that information is sent by the default error handler. The client can study `res.error.cause` as it contains the same information. Useful for user-facing endpoints that need structured client errors.
 
 ## Compression
 
