@@ -17,11 +17,14 @@ Actions are the primary place where type hints add real value.
 `context` is always a `Record<string, unknown>` at runtime, but you can describe what your action expects:
 
 ```ts
-interface ContextAuth {
+import { type BundleContext, createAction } from "@arborjs";
+
+interface ContextAuth extends BundleContext {
   user?: { id: string };
 }
 
 export default createAction<ContextAuth>(({ context }) => {
+  // context is typed
   if (!context.user) throw Ex.Unauthorized();
 });
 ````
@@ -34,6 +37,27 @@ This does not enforce correctness across branches, but it:
 
 Recommended pattern:
 Define small context interfaces (`ContextAuth`, `ContextRequestId`, etc.) in `src/lib/*` and import them into actions that depend on them.
+
+Note about `BundleContext`:
+This is a quirk of TypeScript, where `interface` can extend other interfaces, but `type` cannot and is thus considered more type safe. Extending `BundleContext` on `interface` ensures Arbor accepts it.
+
+When using `type` instead of `interface`, this is valid:
+
+```ts
+type ContextRequestId = {
+  requestId?: string;
+};
+```
+
+Either can still be combined.
+
+```ts
+type Context = ContextAuth & ContextRequestId;
+
+export default createAction<Context>(({ context }) => {
+  // context is typed
+});
+```
 
 ### Return type hints
 
